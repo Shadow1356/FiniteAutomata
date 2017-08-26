@@ -1,5 +1,16 @@
 from tkinter import *
 
+def main():
+    canvas_window = CanvasWindow()
+
+
+class ControlWindow:
+    def __init__(self):
+        self.root = None
+
+    def run(self):
+        self.root = Toplevel()
+
 class ResizingCanvas(Canvas):
     def __init__(self, parent, **kwargs):
         Canvas.__init__(self, parent, **kwargs)
@@ -16,7 +27,7 @@ class ResizingCanvas(Canvas):
         self.scale("all", 0, 0, wscale, hscale)
 
 
-class FAgui:
+class CanvasWindow:
     def __init__(self):
         self.root = None
         self.frame = None
@@ -36,9 +47,9 @@ class FAgui:
         oval = self.drawingCanvas.create_oval(200, 25, 150, 75, fill="blue")
         print(self.drawingCanvas.coords(oval))
         self.drawingCanvas.addtag_all("all")
+
         self.root.mainloop()
 
 
 if __name__ == "__main__":
-    instance = FAgui()
-    instance.run()
+    main()
