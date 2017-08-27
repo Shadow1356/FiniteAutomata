@@ -1,5 +1,4 @@
 from tkinter import *
-from ControlWindow import ControlWindow
 from ResizingCanvas import ResizingCanvas
 
 class CanvasWindow:
@@ -7,10 +6,9 @@ class CanvasWindow:
         self.root = None
         self.frame = None
         self.drawingCanvas = None
-        self.control_window = ControlWindow()
-        self.run()
 
-    def run(self):
+
+    def setup(self):
         self.root = Tk()
         self.frame = Frame(self.root)
         self.frame.pack(fill=BOTH, expand=YES)
@@ -24,5 +22,4 @@ class CanvasWindow:
         oval = self.drawingCanvas.create_oval(200, 25, 150, 75, fill="blue")
         print(self.drawingCanvas.coords(oval))
         self.drawingCanvas.addtag_all("all")
-        self.control_window.run()
-        self.root.mainloop()
+        return self.root, self.drawingCanvas
