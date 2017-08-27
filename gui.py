@@ -3,13 +3,33 @@ from tkinter import *
 def main():
     canvas_window = CanvasWindow()
 
-
 class ControlWindow:
     def __init__(self):
         self.root = None
+        self.state_entry = None
+        self.add_button = None
+
+    def on_frame_configure(self, canvas):
+        canvas.configure(scrollregion=canvas.bbox("all"))
 
     def run(self):
         self.root = Toplevel()
+        self.root.title("Finite Automata Controls")
+        self.root.geometry("400x300")
+        self.root.resizable(False, False)
+        canvas = Canvas(self.root, borderwidth=0, background="#ffffff")
+        frame = Frame(canvas, background="grey")
+        vsb = Scrollbar(self.root, orient="vertical", command=canvas.yview)
+        canvas.configure(yscrollcommand=vsb.set)
+        vsb.pack(side="right", fill="y")
+        canvas.pack(side="left", fill="both", expand=True)
+        canvas.create_window((4,4), window=frame, anchor="nw")
+        frame.bind("<Configure>", lambda event, canvas=canvas: self.on_frame_configure(canvas))
+        self.state_entry = Entry(frame, width=50).grid(row=0,  column=0)
+        self.add_button = Button(frame, width=8, text="Add State").grid(row=0, column=1)
+
+
+
 
 class ResizingCanvas(Canvas):
     def __init__(self, parent, **kwargs):
@@ -32,6 +52,8 @@ class CanvasWindow:
         self.root = None
         self.frame = None
         self.drawingCanvas = None
+        self.control_window = ControlWindow()
+        self.run()
 
     def run(self):
         self.root = Tk()
@@ -47,7 +69,7 @@ class CanvasWindow:
         oval = self.drawingCanvas.create_oval(200, 25, 150, 75, fill="blue")
         print(self.drawingCanvas.coords(oval))
         self.drawingCanvas.addtag_all("all")
-
+        self.control_window.run()
         self.root.mainloop()
 
 
