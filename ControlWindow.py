@@ -23,7 +23,7 @@ class ControlWindow:
         my_canvas.pack(side="left", fill="both", expand=True)
         my_canvas.create_window((4,4), window=self.frame, anchor="nw")
         self.frame.bind("<Configure>", lambda event, canvas=my_canvas: self.on_frame_configure(canvas))
-        self.state_entry = Entry(self.frame, width=50)
+        self.state_entry = Entry(self.frame)
         self.state_entry.grid(row=0,  column=0)
         self.add_button = Button(self.frame)
         self.add_button.grid(row=0, column=1)
