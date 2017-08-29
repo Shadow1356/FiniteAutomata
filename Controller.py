@@ -22,8 +22,30 @@ class __Controller:
         self.control_window.state_entry.delete(0, END)
         self.states.append(State(self.control_window.frame, new_state_name))
         new_state = self.states[-1]
-        for column_number, prop in enumerate(new_state):
-            prop.grid(row=len(self.states), column=column_number, sticky=W)
+        new_state.state_label.grid(row=len(self.states), column=0)
+        new_state.transition_button.configure(text="TRANSITION", command=lambda : self.transition(new_state))
+        new_state.transition_button.grid(row=len(self.states), column=1)
+        new_state.delete_button.configure(text="X", command=lambda : self.delete_state(new_state))
+        new_state.delete_button.grid(row=len(self.states), column=2)
+        new_state.accept_button.configure(text="ACCEPT", command=lambda : self.make_accepting(new_state))
+        new_state.accept_button.grid(row=len(self.states), column=3)
+        new_state.entry_button.configure(text="--->", command=lambda : self.make_entry(new_state))
+        new_state.entry_button.grid(row=len(self.states), column=4)
 
-controller = __Controller(CanvasWindow())
+
+    def transition(self, state):
+        print("Transition Fired")
+
+    def delete_state(self, state):
+        print("Delete Fired")
+
+    def make_accepting(self, state):
+        print("Accept Fired")
+
+    def make_entry(self, state):
+        print("Entry Fired")
+
+
+if __name__ == "__main__":
+    controller = __Controller(CanvasWindow())
 

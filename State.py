@@ -14,12 +14,12 @@ class State:
 
     def _make_state(self):
         self.state_label = Label(self._frame, text=self.name)
-        self.transition_button = Button(self._frame, text="TRAN")
-        self.delete_button = Button(self._frame, text="X")
-        self.accept_button = Button(self._frame, text="ACCEPT")
-        self.entry_button = Button(self._frame, text="--->")
+        self.transition_button = Button(self._frame)
+        self.delete_button = Button(self._frame)
+        self.accept_button = Button(self._frame)
+        self.entry_button = Button(self._frame)
 
-    def __iter__(self):
+    def __iter__(self): #minght not need.
         yield self.state_label
         yield self.transition_button
         yield self.delete_button
