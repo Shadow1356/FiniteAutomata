@@ -2,6 +2,7 @@ from CanvasWindow import CanvasWindow
 from ControlWindow import ControlWindow
 from tkinter import *
 from State import State
+from Parser import Parser
 
 class __Controller:
     def __init__(self, canvas_object):
