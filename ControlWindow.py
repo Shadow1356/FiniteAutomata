@@ -6,6 +6,8 @@ class ControlWindow:
         self.state_entry = None
         self.add_button = None
         self.frame = None
+        self.input_entry = None
+        self.input_button = None
 
     def on_frame_configure(self, canvas):
         canvas.configure(scrollregion=canvas.bbox("all"))
@@ -13,7 +15,7 @@ class ControlWindow:
     def run(self):
         self.root = Toplevel()
         self.root.title("Finite Automata Controls")
-        self.root.geometry("400x300")
+        self.root.geometry("500x300")
         self.root.resizable(False, False)
         my_canvas = Canvas(self.root, borderwidth=0, background="#ffffff")
         self.frame = Frame(my_canvas, background="grey")
@@ -27,3 +29,7 @@ class ControlWindow:
         self.state_entry.grid(row=0,  column=0)
         self.add_button = Button(self.frame)
         self.add_button.grid(row=0, column=1)
+        self.input_entry = Entry(self.frame)
+        self.input_entry.grid(row=0, column=2)
+        self.input_button = Button(self.frame)
+        self.input_button.grid(row=0, column=3)

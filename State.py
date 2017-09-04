@@ -25,3 +25,6 @@ class State:
         yield self.delete_button
         yield self.accept_button
         yield self.entry_button
+
+    def __bool__(self):
+        return True
