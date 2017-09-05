@@ -57,6 +57,9 @@ class __Controller:
     def delete_state(self, state):
         print("Delete Fired")
         self.parser.delete_state(state)
+        for prop in state:
+            prop.grid_forget()
+        del self.states[self.states.index(state)]
 
     def make_accepting(self, state):
         print("Accept Fired")

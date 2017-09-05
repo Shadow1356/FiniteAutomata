@@ -1,5 +1,3 @@
-
-
 class Parser:
     def __init__(self):
         self.__Automata = {} #dict of State -> input -> State
@@ -25,7 +23,6 @@ class Parser:
             self.__entry = None
         else:
             self.__entry = state
-        print("New entry", self.__entry)
         return old_state
 
     def add_accepting(self, state):
@@ -36,7 +33,6 @@ class Parser:
         self.__Accepting.pop(self.__Accepting.index(state))
 
     def parse_input(self, input_word): # returns true if accepted, else False
-        print("Entry Point = ", self.__entry)
         if not self.__entry:
             raise LookupError("Machine Must Have Entry Point")
         current_state = self.__Automata[self.__entry]
