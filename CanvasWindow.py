@@ -17,9 +17,9 @@ class CanvasWindow:
         self.root.wm_title("Finite Automata Simulator")
         self.drawingCanvas = ResizingCanvas(self.frame, width=w/2, height=h/2, bg="gray", highlightthickness=0)
         self.drawingCanvas.pack(fill=BOTH, expand=YES)
-        self.drawingCanvas.create_line(0,0,200,100)
-        self.drawingCanvas.create_line(0, 100, 200, 0, fill="red", dash=(4, 4))
-        oval = self.drawingCanvas.create_oval(200, 25, 150, 75, fill="blue")
-        print(self.drawingCanvas.coords(oval))
+        # self.drawingCanvas.create_line(0,0,200,100)
+        # self.drawingCanvas.create_line(0, 100, 200, 0, fill="red", dash=(4, 4))
+        # oval = self.drawingCanvas.create_oval(200, 25, 150, 75, fill="blue")
+        # print(self.drawingCanvas.coords(oval))
         self.drawingCanvas.addtag_all("all")
         return self.root, self.drawingCanvas
