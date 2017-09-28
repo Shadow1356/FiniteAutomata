@@ -5,6 +5,7 @@ class State:
     def __init__(self, input_frame, state_name):
         self._frame = input_frame
         self.name = state_name
+        self.shape = None
         self.transition_button = None
         self.delete_button = None
         self.accept_button = None
@@ -28,3 +29,8 @@ class State:
 
     def __bool__(self):
         return True
+
+    # def __repr__(self):
+    #     if not self.shape:
+    #         return ""
+    #     return self.shape

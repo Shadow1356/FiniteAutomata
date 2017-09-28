@@ -1,5 +1,6 @@
 from CanvasWindow import CanvasWindow
 from ControlWindow import ControlWindow
+import Geometry
 from tkinter import *
 from State import State
 from Parser import Parser
@@ -48,7 +49,8 @@ class __Controller:
         new_state.entry_button.configure(text="--->", command=lambda : self.make_entry(new_state))
         new_state.entry_button.grid(row=len(self.states), column=4)
         self.parser.add_state(new_state)
-
+        Geometry.add_state(self.canvas_window, new_state, self.states)
+        pass
 
     def transition(self, state):
         print("Transition Fired")
