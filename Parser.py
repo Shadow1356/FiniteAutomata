@@ -16,6 +16,8 @@ class Parser:
         del self.__Automata[state]
         if state == self.__entry:
             self.__entry = None
+        if state in self.__Accepting:
+            del self.__Accepting[self.__Accepting.index(state)]
 
     def set_entry(self, state):
         old_state = self.__entry
@@ -25,12 +27,18 @@ class Parser:
             self.__entry = state
         return old_state
 
-    def add_accepting(self, state):
-        self.__Accepting.append(state)
+    def is_entry(self, state):
+        return state == self.__entry
 
-    def remove_accepting(self, state):
-        #TODO: add exceptional case handling.
-        self.__Accepting.pop(self.__Accepting.index(state))
+    def add_accepting(self, state):
+        if not state in self.__Accepting:
+            self.__Accepting.append(state)
+            return True
+        else:
+            # TODO: add exceptional case handling.
+            self.__Accepting.pop(self.__Accepting.index(state))
+            return False
+
 
     def parse_input(self, input_word): # returns true if accepted, else False
         if not self.__entry:

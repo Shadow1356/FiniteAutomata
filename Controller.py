@@ -4,6 +4,7 @@ import Geometry
 from tkinter import *
 from State import State
 from Parser import Parser
+from Colors import *
 
 class __Controller:
     def __init__(self, canvas_object):
@@ -65,14 +66,20 @@ class __Controller:
 
     def make_accepting(self, state):
         print("Accept Fired")
-        self.parser.add_accepting(state)
+        is_accepting = self.parser.add_accepting(state)
+        if is_accepting:
+            state.accept_button.configure(bg=ACCEPTING)
+        else:
+            state.accept_button.configure(bg=NONE)
+        is_entry = self.parser.is_entry(state)
+        Geometry.make_accepting(self.canvas_window, state, is_accepting, is_entry)
 
     def make_entry(self, state):
         print("Entry Fired")
         old_entry = self.parser.set_entry(state)
-        state.entry_button.configure(bg="blue")
+        state.entry_button.configure(bg=ENTRY)
         try:
-            old_entry.entry_button.configure(bg="light grey")
+            old_entry.entry_button.configure(bg=NONE)
         except AttributeError as ae:
             print(ae)
             print("No return value")

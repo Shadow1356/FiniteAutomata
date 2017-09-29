@@ -1,0 +1,5 @@
+ACCEPTING = "yellow"
+ENTRY = "blue"
+BOTH = "green"
+NONE = "light grey"
+DEFAULT = "white"

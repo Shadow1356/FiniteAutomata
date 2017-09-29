@@ -2,6 +2,7 @@ from tkinter import *
 from random import randint
 from Logger import Logger
 from time import strftime
+from Colors import *
 
 SHAPE_SCALE = 30
 logName = "Logs\\" + strftime("%d%m%Y%H%M%S") + ".log"
@@ -18,6 +19,18 @@ def check_collision(canvas, shape1, shape2):
            and (s1[1] <= s2[1] <= s1[3] or s1[1] <= s2[3] <= s1[3])
 
 
+def make_accepting(canvas, state, is_accepting, is_entry):
+    if is_accepting:
+        if not is_entry:
+            canvas.itemconfig(state.shape, fill=ACCEPTING)
+        else:
+            canvas.itemconfig(state.shape, fill=BOTH)
+    else:
+        if not is_entry:
+            canvas.itemconfig(state.shape, fill=DEFAULT)
+        else:
+            canvas.itemconfig(state.shape, fill=ENTRY)
+
 def add_state(canvas, state, states):
     log.debug(states)
     width = canvas.width
@@ -32,7 +45,7 @@ def add_state(canvas, state, states):
                                        chosen_height,
                                        chosen_width+30,
                                        chosen_height+30,
-                                       fill="white")
+                                       fill=DEFAULT)
         log.debug("Shape = ", canvas.coords(new_shape))
         for s in states:
             log.debug("s = ", s)
@@ -46,4 +59,4 @@ def add_state(canvas, state, states):
         else:
             tests_pass = True
             state.shape = new_shape
-            pass
+            canvas.create_text(chosen_width+SHAPE_SCALE/2, chosen_height+SHAPE_SCALE/2, text=state.name)
